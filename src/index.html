@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>CHAD Agent</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="titlebar">
+      <div class="titlebar-left">
+        <div class="status-indicator" id="statusIndicator"></div>
+        <span class="title">CHAD Support</span>
+      </div>
+      <div class="titlebar-right">
+        <button class="titlebar-btn" id="settingsBtn" title="Settings">⚙</button>
+        <button class="titlebar-btn" id="minimizeBtn" title="Minimize">−</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="chat">Chat</button>
+      <button class="tab" data-tab="ticket">New Ticket</button>
+      <button class="tab" data-tab="device">Device Info</button>
+      <button class="tab" data-tab="settings">Settings</button>
+    </nav>
+
+    <main class="content">
+      <section class="tab-content active" id="tab-chat">
+        <div class="chat-messages" id="chatMessages">
+          <div class="welcome-message">
+            <div class="welcome-icon">💬</div>
+            <h3>Welcome to CHAD Support</h3>
+            <p>Chat with IT support or create a ticket for assistance.</p>
+            <p class="hotkey-hint">Press <kbd>Ctrl+Shift+H</kbd> to open anytime</p>
+          </div>
+        </div>
+        <div class="chat-input-container">
+          <textarea 
+            id="chatInput" 
+            placeholder="Type a message..." 
+            rows="2"
+          ></textarea>
+          <button class="send-btn" id="sendBtn">
+            <span>Send</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="tab-content" id="tab-ticket">
+        <form id="ticketForm" class="ticket-form">
+          <div class="form-group">
+            <label for="ticketSubject">Subject</label>
+            <input type="text" id="ticketSubject" placeholder="Brief description of your issue" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="ticketPriority">Priority</label>
+            <select id="ticketPriority">
+              <option value="low">Low - Can wait</option>
+              <option value="medium" selected>Medium - Affecting work</option>
+              <option value="high">High - Urgent</option>
+              <option value="critical">Critical - Complete blocker</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="ticketDescription">Description</label>
+            <textarea 
+              id="ticketDescription" 
+              placeholder="Describe your issue in detail. Include any error messages or steps to reproduce."
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="includeDeviceInfo" checked>
+              Include device information
+            </label>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span>Create Ticket</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="tab-content" id="tab-device">
+        <div class="device-info" id="deviceInfo">
+          <div class="loading">Loading device information...</div>
+        </div>
+      </section>
+
+      <section class="tab-content" id="tab-settings">
+        <form id="settingsForm" class="settings-form">
+          <div class="form-group">
+            <label for="serverUrl">CHAD Server URL</label>
+            <input type="url" id="serverUrl" placeholder="ws://chad-server.example.com:5000">
+          </div>
+          
+          <div class="form-group">
+            <label>Device ID</label>
+            <div class="device-id" id="displayDeviceId">Loading...</div>
+          </div>
+          
+          <div class="form-group">
+            <label>Connection Status</label>
+            <div class="connection-status" id="connectionStatus">
+              <span class="status-dot"></span>
+              <span class="status-text">Checking...</span>
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-btn">Save Settings</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  
+  <script src="renderer.js"></script>
+</body>
+</html>
