@@ -19,28 +19,18 @@
       "output": "dist"
     },
     "files": [
-      "src/**/*",
-      "assets/**/*"
+      "src/**/*"
     ],
     "win": {
-      "target": ["nsis", "portable"],
-      "icon": "assets/icon.ico"
+      "target": ["portable"]
     },
     "mac": {
-      "target": ["dmg", "zip"],
-      "icon": "assets/icon.icns",
+      "target": ["zip"],
       "category": "public.app-category.utilities"
     },
     "linux": {
-      "target": ["AppImage", "deb"],
-      "icon": "assets/icon.png",
+      "target": ["AppImage"],
       "category": "Utility"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
     }
   },
   "devDependencies": {
